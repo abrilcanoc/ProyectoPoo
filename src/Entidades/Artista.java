@@ -98,7 +98,8 @@ public class Artista {
     public void setObras(ArrayList<Obra> Obras) {
         this.Obras = new ArrayList<>();
     }
-    
+     
+  
     
     
 }

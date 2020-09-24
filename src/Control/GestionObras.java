@@ -5,10 +5,25 @@
  */
 package Control;
 
+import Entidades.Obra;
+import java.util.ArrayList;
+import java.util.Calendar;
+
 /**
  *
  * @author ASUS
  */
 public class GestionObras {
+    private Obra obra;
+    
+    
+    public ArrayList<Obra> ListaObras(){
+        return new ArrayList<Obra>();
+    }
+    
+    
+  
+    
+
     
 }

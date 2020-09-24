@@ -99,7 +99,5 @@ public class Obra {
         this.Artistas =  new ArrayList<>();
     }
     
-    
-    
-    
+   
 }

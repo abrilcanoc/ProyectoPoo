@@ -5,10 +5,18 @@
  */
 package Control;
 
+import Entidades.Cliente;
+import java.util.ArrayList;
+
 /**
  *
  * @author ASUS
  */
 public class GestionClientes {
-    
+     private Cliente clientes;
+     
+    public ArrayList<Cliente> ListaCliente(){
+        return new ArrayList<Cliente>();
+    }
 }
+
