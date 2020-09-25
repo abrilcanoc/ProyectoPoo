@@ -15,6 +15,16 @@ public class Compra {
     private long codigoCompra;
     private Calendar fecha;
     private boolean pagado;
+    private Cliente CompraCliente;
+    private Obra CompraObra;
+
+    public Compra(long codigoCompra, Calendar fecha, boolean pagado, Cliente CompraCliente, Obra CompraObra) {
+        this.codigoCompra = codigoCompra;
+        this.fecha = fecha;
+        this.pagado = pagado;
+        this.CompraCliente = CompraCliente;
+        this.CompraObra = CompraObra;
+    }
 
     public Compra(long codigoCompra, Calendar fecha, boolean pagado) {
         this.codigoCompra = codigoCompra;
@@ -44,6 +54,22 @@ public class Compra {
 
     public void setPagado(boolean pagado) {
         this.pagado = pagado;
+    }
+
+    public Cliente getCompraCliente() {
+        return CompraCliente;
+    }
+
+    public void setCompraCliente(Cliente CompraCliente) {
+        this.CompraCliente = CompraCliente;
+    }
+
+    public Obra getCompraObra() {
+        return CompraObra;
+    }
+
+    public void setCompraObra(Obra CompraObra) {
+        this.CompraObra = CompraObra;
     }
     
     

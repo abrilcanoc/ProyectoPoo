@@ -18,7 +18,6 @@ public class Obra {
     private Calendar fecha;
     private float precioRef;
     private String dimensiones;
-    private Compra compraObra;
     private ArrayList<Artista> Artistas;
 
     public Obra() {
@@ -30,16 +29,15 @@ public class Obra {
         this.fecha = fecha;
         this.precioRef = precioRef;
         this.dimensiones = dimensiones;
-        this.compraObra = compraObra;
+        this.Artistas=new ArrayList<>();
     }
 
-    public Obra(long codigoObra, String titulo, Calendar fecha, float precioRef, String dimensiones, Compra compraObra, ArrayList<Artista> Artistas) {
+    public Obra(long codigoObra, String titulo, Calendar fecha, float precioRef, String dimensiones, ArrayList<Artista> Artistas) {
         this.codigoObra = codigoObra;
         this.titulo = titulo;
         this.fecha = fecha;
         this.precioRef = precioRef;
         this.dimensiones = dimensiones;
-        this.compraObra = compraObra;
         this.Artistas = new ArrayList<>();
     }
 
@@ -81,14 +79,6 @@ public class Obra {
 
     public void setDimensiones(String dimensiones) {
         this.dimensiones = dimensiones;
-    }
-
-    public Compra getCompraObra() {
-        return compraObra;
-    }
-
-    public void setCompraObra(Compra compraObra) {
-        this.compraObra = compraObra;
     }
 
     public ArrayList<Artista> getArtistas() {

@@ -16,7 +16,6 @@ public class Cliente {
     private String apellidos;
     private String direccionEntrega;
     private long telefono;
-    private Compra compraCliente;
 
     public Cliente() {
     }
@@ -30,15 +29,6 @@ public class Cliente {
         this.telefono = telefono;
     }
     
-    public Cliente(long codigoCliente, long cedula, String nombre, String apellidos, String direccionEntrega, long telefono, Compra compraCliente) {
-        this.codigoCliente = codigoCliente;
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.direccionEntrega = direccionEntrega;
-        this.telefono = telefono;
-        this.compraCliente = compraCliente;
-    }
 
     public long getCodigoCliente() {
         return codigoCliente;
@@ -87,15 +77,5 @@ public class Cliente {
     public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
-
-    public Compra getCompraCliente() {
-        return compraCliente;
-    }
-
-    public void setCompraCliente(Compra compraCliente) {
-        this.compraCliente = compraCliente;
-    }
- 
-    
-    
+  
 }
