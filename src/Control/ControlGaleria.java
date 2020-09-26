@@ -30,7 +30,7 @@ public class ControlGaleria {
         this.listaCompras=new ArrayList<>();
     }
     
-        public boolean ExisteArtista(Artista art){
+    public boolean ExisteArtista(Artista art){
         for (Artista a: listaArtistas){
             if(a.getCedula()==art.getCedula()){
                 return true;
@@ -112,12 +112,12 @@ public class ControlGaleria {
         return resultados;
     }
     
-    public ArrayList<Obra> BuscarObra(Artista art){
+    public ArrayList<Obra> BuscarObraA(long cod){
         ArrayList<Obra> resultados =new ArrayList<>();
         resultados= null;
         for (Obra o : listaObras){
             for(Artista a : o.getArtistas()){
-                if(a.getCodigoArtista()==art.getCodigoArtista()){
+                if(a.getCodigoArtista()==cod){
                     resultados.add(o);
                 }
             }
@@ -219,7 +219,7 @@ public class ControlGaleria {
         }
         return false;
     }
-   public boolean ModificarCliente(long cod,long ced,boolean nada){
+   public boolean ModificarClienteC(long cod,long ced){
        if(!ExisteCliente(cod))
             return false;
        BuscarCliente(cod).setCedula(ced);
@@ -237,13 +237,13 @@ public class ControlGaleria {
        BuscarCliente(cod).setApellidos(apellido);
        return true;
     }
-   public boolean ModificarCliente(long cod,String direccion, boolean nada){
+   public boolean ModificarClienteD(long cod,String direccion){
        if(!ExisteCliente(cod))
             return false;
        BuscarCliente(cod).setDireccionEntrega(direccion);
        return true;
     }
-   public boolean ModificarCliente(long cod,boolean nada,long tel){
+   public boolean ModificarClienteT(long cod,long tel){
        if(!ExisteCliente(cod))
             return false;
        BuscarCliente(cod).setTelefono(tel);
@@ -254,22 +254,21 @@ public class ControlGaleria {
            return null;
        
         Cliente ClienteRet= BuscarCliente(cod);
-        listaObras.remove(BuscarCliente(cod));
+        listaClientes.remove(BuscarCliente(cod));
         return ClienteRet;
    
    }
-   public boolean RealizarCompra(long codCli, long codOb){
+   public long RealizarCompra(long codCli, long codOb){
        if(!ExisteCliente(codCli)&& !ExisteObra(codOb))
-           return false; 
+           return 0; 
        Random rand = new Random(); 
-       int Cod = rand.nextInt(1000);
+       long Cod = rand.nextInt(1000);
        if(ExisteCompra(Cod))
-           return false;
+           return 0;
        Calendar today = Calendar.getInstance();
-       Compra comp= new Compra(Cod, today, false);
+       Compra comp= new Compra(Cod, today, false,BuscarCliente(codCli),BuscarObra(codOb));
        listaCompras.add(comp);
-       
-       return true;  
+       return Cod;  
    }
    
    public Compra EliminarCompra(long num){
@@ -294,5 +293,9 @@ public class ControlGaleria {
       }
        return resultados;
     }
+   public ArrayList<Artista> ArtistasMasVendidos(){
+        return null;     
+   }
+        
 }
 

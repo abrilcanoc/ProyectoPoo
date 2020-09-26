@@ -19,27 +19,31 @@ public class Artista {
     private String apellidos;
     private Calendar fechaNacimiento;
     private long telefono;
+    private int ObrasVendidas;
     private ArrayList<Obra> Obras;
 
     public Artista() {
     }
 
-    public Artista(long codigoArtista, long cedula, String nombre, String apellidos, Calendar fechaNacimiento, long telefono) {
+    public Artista(long codigoArtista, long cedula, String nombre, String apellidos, Calendar fechaNacimiento, long telefono, int ObrasVendidas) {
         this.codigoArtista = codigoArtista;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
+        this.ObrasVendidas= ObrasVendidas;
+        this.Obras=new ArrayList<>();
     }
 
-    public Artista(long codigoArtista, long cedula, String nombre, String apellidos, Calendar fechaNacimiento, long telefono, ArrayList<Obra> Obras) {
+    public Artista(long codigoArtista, long cedula, String nombre, String apellidos, Calendar fechaNacimiento, long telefono, int ObrasVendidas, ArrayList<Obra> Obras) {
         this.codigoArtista = codigoArtista;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
+        this.ObrasVendidas= ObrasVendidas;
         this.Obras = new ArrayList<>();
     }
 
@@ -89,6 +93,14 @@ public class Artista {
 
     public void setTelefono(long telefono) {
         this.telefono = telefono;
+    }
+
+    public int getObrasVendidas() {
+        return ObrasVendidas;
+    }
+
+    public void setObrasVendidas(int ObrasVendidas) {
+        this.ObrasVendidas = ObrasVendidas;
     }
 
     public ArrayList<Obra> getObras() {

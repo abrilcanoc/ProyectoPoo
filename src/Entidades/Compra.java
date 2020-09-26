@@ -72,6 +72,6 @@ public class Compra {
         this.CompraObra = CompraObra;
     }
     
-    
+      
    
 }
