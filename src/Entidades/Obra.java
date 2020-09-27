@@ -32,6 +32,15 @@ public class Obra {
         this.Artistas=new ArrayList<>();
     }
 
+    public Obra(long codigoObra, String titulo, Calendar fecha, float precioRef, String dimensiones) {
+        this.codigoObra = codigoObra;
+        this.titulo = titulo;
+        this.fecha = fecha;
+        this.precioRef = precioRef;
+        this.dimensiones = dimensiones;
+        this.Artistas = new ArrayList<>(); 
+    }
+    
     public Obra(long codigoObra, String titulo, Calendar fecha, float precioRef, String dimensiones, ArrayList<Artista> Artistas) {
         this.codigoObra = codigoObra;
         this.titulo = titulo;

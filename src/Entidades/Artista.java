@@ -36,6 +36,17 @@ public class Artista {
         this.Obras=new ArrayList<>();
     }
 
+    public Artista(long codigoArtista, long cedula, String nombre, String apellidos, Calendar fechaNacimiento, long telefono) {
+        this.codigoArtista = codigoArtista;
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+        this.Obras = new ArrayList<>();
+    }
+    
+
     public Artista(long codigoArtista, long cedula, String nombre, String apellidos, Calendar fechaNacimiento, long telefono, int ObrasVendidas, ArrayList<Obra> Obras) {
         this.codigoArtista = codigoArtista;
         this.cedula = cedula;

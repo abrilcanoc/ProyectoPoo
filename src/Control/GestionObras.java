@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Entidades.Artista;
 import Entidades.Obra;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,7 +19,10 @@ public class GestionObras {
     
     
     public ArrayList<Obra> ListaObras(){
-        return new ArrayList<Obra>();
+        ArrayList<Artista> artista1=new ArrayList<>();
+        ArrayList<Obra> ListaObras=new ArrayList<Obra>();
+        
+        return ListaObras;
     }
     
     

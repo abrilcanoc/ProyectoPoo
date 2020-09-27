@@ -22,12 +22,14 @@ public class ControlGaleria {
     private ArrayList<Artista> listaArtistas;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Compra> listaCompras;
-
+    
+    
     public ControlGaleria() {
-        this.listaArtistas= new ArrayList<>();
-        this.listaClientes=new ArrayList<>();
-        this.listaObras=new ArrayList<>();
-        this.listaCompras=new ArrayList<>();
+        GestionClientes gestion = new GestionClientes();
+        this.listaArtistas = new ArrayList<>();
+        this.listaClientes = gestion.ListaCliente();
+        this.listaObras = new ArrayList<>();
+        this.listaCompras = new ArrayList<>();
     }
     
     public boolean ExisteArtista(Artista art){
@@ -88,11 +90,13 @@ public class ControlGaleria {
     
     public ArrayList<Obra> obrasDisponibles (){
         ArrayList<Obra> obrasDisp =new ArrayList<>();
-        boolean disp=true;
+        boolean disp=false;
         for(Obra o: listaObras){
             for(Compra c: listaCompras){
                 if(c.getCompraObra()==o){
-                    disp=false;
+                    if(c.isPagado()){
+                        disp = false;
+                    }
                 }
             }
             if (disp)
@@ -199,7 +203,7 @@ public class ControlGaleria {
        return obraRet;
    }
    
-   public ArrayList<Cliente> VerListadoClientes(){
+   public ArrayList<Cliente> VerListadoClientes(){ 
        return listaClientes;
    }
    
@@ -264,8 +268,13 @@ public class ControlGaleria {
        Random rand = new Random(); 
        long Cod = rand.nextInt(1000);
        if(ExisteCompra(Cod))
-           return 0;
+           Cod = rand.nextInt(1000);
        Calendar today = Calendar.getInstance();
+       Obra obra= BuscarObra(codOb);
+       for(Artista a: obra.getArtistas()){
+            int Vendidas=a.getObrasVendidas();
+            a.setObrasVendidas(Vendidas++);  
+       }
        Compra comp= new Compra(Cod, today, false,BuscarCliente(codCli),BuscarObra(codOb));
        listaCompras.add(comp);
        return Cod;  
@@ -293,9 +302,32 @@ public class ControlGaleria {
       }
        return resultados;
     }
+   
    public ArrayList<Artista> ArtistasMasVendidos(){
-        return null;     
-   }
-        
+
+       ArrayList<Artista> listadeArtistas = new ArrayList<>();
+       listadeArtistas = listaArtistas;
+
+        Artista Mayor;
+
+        for (int i = 0; i < listaArtistas.size() - 1; i++) {
+
+            for (Artista artistaVuelta : listadeArtistas) {
+
+                if (artistaVuelta.getObrasVendidas() < listadeArtistas.get(listaArtistas.indexOf(artistaVuelta) + 1).getObrasVendidas()) {
+
+                    Mayor = listadeArtistas.get(listaArtistas.indexOf(artistaVuelta) + 1);
+                    listadeArtistas.set((listaArtistas.indexOf(artistaVuelta) + 1), artistaVuelta);
+                    listadeArtistas.set(listadeArtistas.indexOf(artistaVuelta), Mayor);
+
+                }
+
+            }
+
+        }
+        return listadeArtistas;
+    }
+
 }
+ 
 

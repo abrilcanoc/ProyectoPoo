@@ -6,10 +6,12 @@
 package Boundary;
 
 import Control.ControlGaleria;
+import Entidades.Artista;
 import Entidades.Cliente;
 import Entidades.Compra;
 import Entidades.Obra;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -21,21 +23,23 @@ public class PantallaGaleria {
     /**
      * @param args the command line arguments
      */
-    private ControlGaleria controlGaleria;
+    private static ControlGaleria controlGaleria;
     
     public PantallaGaleria (){
-        controlGaleria= new ControlGaleria();
+        controlGaleria = new ControlGaleria();
     }
     
     public static void main(String[] args) {
-        PantallaGaleria pantalla =new PantallaGaleria();
-        
-        int m = menu();
+        PantallaGaleria pantalla = new PantallaGaleria();
         Scanner sc = new Scanner(System.in);
-        while (m!=15){
+        int m = 0;
+        
+        while (m != 15){
+            menu();
+            m = sc.nextInt();
             if (m==1){
-                ArrayList<Obra> ob= new ArrayList();
-                ob=pantalla.controlGaleria.obrasDisponibles();
+                ArrayList<Obra> ob= new ArrayList<>();
+                ob = controlGaleria.obrasDisponibles();
                 System.out.println("Obras Disponibles:");
                 for (Obra o: ob){
                      System.out.println(" Titulo: "+o.getTitulo());
@@ -52,7 +56,7 @@ public class PantallaGaleria {
                 System.out.println("1. Titulo");
                 System.out.println("2. Artista");
                 System.out.println("3. Año");
-                op= sc.nextInt();
+                op = sc.nextInt();
                 if (op ==1){
                     System.out.println("Ingrese el titulo a buscar");
                     String titulo=sc.next();
@@ -84,9 +88,42 @@ public class PantallaGaleria {
                 long cod=sc.nextInt();
                 System.out.println("Escriba el precio de referencia");
                 float precio =sc.nextFloat();
+                System.out.println("Escriba el dia de la fecha de la obra");
+                int dia=sc.nextInt();
+                System.out.println("Escriba el mes de la fecha de la obra");
+                int mes=sc.nextInt();
+                System.out.println("Escriba el año de la fecha de la obra");
+                int a=sc.nextInt();
+                Calendar fecha1 = Calendar.getInstance();
+                fecha1.set(a, mes, dia);
                 System.out.println("Escriba las dimensiones de la obra");
-                String dim=sc.next();
-                
+                String dimen = sc.next();
+                Obra obra= new Obra(cod, titulo, fecha1, precio, dimen);
+                int op=0;
+                while (op!=2){
+                    System.out.println("Digite 1 para ingresar un un nuevo artista y 2 para salir");
+                    op = sc.nextInt();
+                    if(op==1){
+                        System.out.println("Digite el nombre del artista: ");
+                        String nombre = sc.next();
+                        System.out.println("Digite apellidos del artista: ");
+                        String apellido = sc.next();
+                        System.out.println("Digite el año, mes, dia de nacimiento,: ");
+                        int year = sc.nextInt();
+                        int month = sc.nextInt();
+                        int day = sc.nextInt();
+                        Calendar fecha = Calendar.getInstance();
+                        fecha.set(year, month, day);
+                        System.out.println("Digite el numero de telefono: ");
+                        long telefono = sc.nextLong();
+                        System.out.println("Digite el codigo del artista: ");
+                        long codigo = sc.nextLong();
+                        System.out.println("Digite la cedula del artista: ");
+                        long cedula = sc.nextLong();
+                        Artista artista = new Artista(codigo, cedula, nombre, apellido, fecha, telefono);
+                        obra.getArtistas().add(artista);                        
+                    }
+                } 
             }
             //Modificar artistas?
             if (m==4){
@@ -146,10 +183,9 @@ public class PantallaGaleria {
                 }
             }
             if (m==6){
-                ArrayList<Cliente> cli= new ArrayList();
-                cli=pantalla.controlGaleria.VerListadoClientes();
+                ArrayList<Cliente> cli = pantalla.controlGaleria.VerListadoClientes();
                 System.out.println("Cliente:");
-                for (Cliente c: cli){
+                for (Cliente c : cli){
                      System.out.println(" Nombre: "+ c.getNombre());
                      System.out.println(" Apellido: "+c.getApellidos());
                      System.out.println(" Direccion:"+c.getDireccionEntrega());
@@ -298,8 +334,7 @@ public class PantallaGaleria {
         }
         
     }
-        public static int menu(){
-           Scanner sc =new Scanner(System.in);
+        public static void menu(){
            System.out.println("1. Ver listado de obras disponibles");
            System.out.println("2. Buscar una obra por titulo, año o artista");
            System.out.println("3. Insertar una obra");
@@ -315,8 +350,6 @@ public class PantallaGaleria {
            System.out.println("13. Ver listado de compras especifico");
            System.out.println("14. Ver listado de artistas mas vendidos");
            System.out.println("15. Salir");
-           int m = sc.nextInt();
-        return m;
     }
           
 }
